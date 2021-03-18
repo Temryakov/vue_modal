@@ -52,9 +52,8 @@
                 </p>
             </div>
             <h1 style='text-align: center;'>Please, click this button.</h1>
-            <button @click='showModal = true' class='main-button'>Button</button>
-            <modal v-if="showModal" @close="showModal = false">
-                <a slot="close" class='modal-close'></a>
+            <button @click='openModal' class='main-button'>Button</button>
+            <modal v-if="showModal" @close="closeModal">
               </modal>
         </div>
     </body>
@@ -69,7 +68,17 @@
           el: "#app",
           data: {
             showModal: false
-          }
+          },
+          methods: {
+            openModal() {
+              this.showModal = true;
+              document.body.classList.add('modal_open');
+            },
+            closeModal() {
+              this.showModal = false;
+              document.body.classList.remove('modal_open');
+            }
+        }
         });
       </script>
 </html>
